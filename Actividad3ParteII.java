@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package actividad3.parteii;
 
 /**
  *
- * @author 1001001238
+ * @author Kendall Tames
+ * @author Steven Quesada
+ * @author Carlos Vega
+ * @author Marlen Solano
  */
 public class Actividad3ParteII {
 
@@ -15,7 +17,7 @@ public class Actividad3ParteII {
    * @param args the command line arguments
    */
   public static void main(String[] args) {
-    // TODO code application logic here
+    System.out.println("Hola mundo");
   }
   
 }
