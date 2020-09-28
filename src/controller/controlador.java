@@ -1,15 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package src.controller;
-import model.TEstado;
-/**
- *
- * @author
- */
-public class Controlador {
+import src.model.*;
+
+public class controlador {
   private Sala laSala;
   private TUsuarios usuarioActual;
 
@@ -141,5 +133,4 @@ public class Controlador {
   public void verFechaMensualidad() {
     
   }
-   
 }
