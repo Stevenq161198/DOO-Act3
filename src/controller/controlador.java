@@ -60,20 +60,24 @@ public class Controlador {
     this.laSala.removeHorario(indice);
   }
 
-  public void definirCostoMatricula(double costoMatricula) {
+  public double definirCostoMatricula(double costoMatricula) {
     this.laSala.setCostoMatricula(costoMatricula);
+    return costoMatricula;
   }
 
-  public void definirCostoMensualidad(double costoMensual) {
+  public double definirCostoMensualidad(double costoMensual) {
     this.laSala.setCostoMensual(costoMensual);
+    return costoMensual;
   }
 
-  public void definirCapacidad(int capacidad) {
+  public int definirCapacidad(int capacidad) {
     this.laSala.setCapacidad(capacidad);
+    return capacidad;
   }
 
-  public void definirAforo(int aforo) {
+  public int definirAforo(int aforo) {
     this.laSala.setAforoHabilitado(aforo);
+    return aforo;
   }
 
   public void registrarServicio() {

@@ -54,17 +54,60 @@ public class Actividad3ParteII {
           System.out.println(controlador.getHorariosSalaString());
           break;
         case 3:
-        System.out.println("");
+          System.out.println("Ingrese el nuevo horario de atención\n");
+          System.out.println("Dia: ");
+          String nuevoDia = in.nextLine();
+          String nuevoDiaU = nuevoDia.toUpperCase();
+          TDia tDia = TDia.valueOf(nuevoDiaU);
+          System.out.println("Hora y minutos de inicio: ");
+          int nuevaHoraIn = in.nextInt();
+          int nuevoMinIn = in.nextInt();
+          System.out.println("Am/Pm: ");
+          String ampmIn = in.nextLine();
+          String ampmInU = ampmIn.toUpperCase().trim();
+          TTiempo tTiempoIn = TTiempo.valueOf(ampmInU);
+          System.out.println("Hora y minutos de fin: ");
+          int nuevaHoraFin = in.nextInt();
+          int nuevoMinFin = in.nextInt();
+          System.out.println("Am/Pm: ");
+          String ampmFin = in.nextLine();
+          String ampmFinU = ampmFin.toUpperCase();
+          TTiempo tTiempoFin = TTiempo.valueOf(ampmFinU);
+          controlador.agregarHorarioSala(new HorarioDia(tDia, nuevaHoraIn, nuevoMinIn, tTiempoIn, nuevaHoraFin, nuevoMinFin, tTiempoFin));
+          System.out.println("El nuevo horario es: ");
+          System.out.println(controlador.getHorariosSalaString());
           break;
         case 4:
+          System.out.println("Digite el nuevo costo de matrícula\n");
+          System.out.println("Costo de matrícula: ");
+          double nuevoCostoMatricula = in.nextDouble();
+          System.out.println("El nuevo costo de matrícula es: ");
+          System.out.println(controlador.definirCostoMatricula(nuevoCostoMatricula));
           break;
         case 5:
+          System.out.println("Digite el nuevo costo de la mensualidad\n");
+          System.out.println("Costo de mensualidad: ");
+          Double nuevoCostoMensualidad =in.nextDouble();
+          System.out.println("El nuevo costo de la mensualidad es: ");
+          System.out.println(controlador.definirCostoMensualidad(nuevoCostoMensualidad));          
+          
           break;
         case 6:
+          System.out.println("Digite la nueva capacidad maxima\n");
+          System.out.println("Capacidad maxima: ");
+          int nuevoCapacidadMaxima = in.nextInt();
+          System.out.println("La nueva capacidad maxima es: ");
+          System.out.println(controlador.definirCapacidad(nuevoCapacidadMaxima));
           break;
         case 7:
+          System.out.println("Digite la nuevo aforo\n");
+          System.out.println("Aforo: ");
+          int nuevoAforo = in.nextInt();
+          System.out.println("El nuevo aforo es: ");
+          System.out.println(controlador.definirAforo(nuevoAforo));
           break;
         case 8:
+          System.out.println("¡Gracias, saliendo!");
           break;
         default:
           System.out.println("La opción digitada no es válida");
@@ -106,6 +149,7 @@ public class Actividad3ParteII {
           mostrarSubmenuSala(controlador, in);
           break;
         case 2:
+
           break;
         case 3:
           break;
