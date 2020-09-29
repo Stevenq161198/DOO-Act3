@@ -7,23 +7,27 @@ package src.model;
 
 /**
  *
- * @author 1001001238
+ * @author Kendall Tames
+ * @author Steven Quesada
+ * @author Carlos Vega
+ * @author Marlen Solano
  */
 public class HorarioDia {
-  private TDia diaSemana; 
+  private TDia diaSemana;
   private int horaInicio;
-  private int minInicio; 
+  private int minInicio;
   private TTiempo tiempoInicio;
-  private int horaDinal;
+  private int horaFinal;
   private int minFinal;
   private TTiempo tiempoFinal;
 
-  public HorarioDia(TDia diaSemana, int horaInicio, int minInicio, TTiempo tiempoInicio, int horaDinal, int minFinal, TTiempo tiempoFinal) {
+  public HorarioDia(TDia diaSemana, int horaInicio, int minInicio, TTiempo tiempoInicio, int horaFinal, int minFinal,
+      TTiempo tiempoFinal) {
     this.diaSemana = diaSemana;
     this.horaInicio = horaInicio;
     this.minInicio = minInicio;
     this.tiempoInicio = tiempoInicio;
-    this.horaDinal = horaDinal;
+    this.horaFinal = horaFinal;
     this.minFinal = minFinal;
     this.tiempoFinal = tiempoFinal;
   }
@@ -60,12 +64,12 @@ public class HorarioDia {
     this.tiempoInicio = tiempoInicio;
   }
 
-  public int getHoraDinal() {
-    return horaDinal;
+  public int getHoraFinal() {
+    return horaFinal;
   }
 
-  public void setHoraDinal(int horaDinal) {
-    this.horaDinal = horaDinal;
+  public void setHoraDinal(int horaFinal) {
+    this.horaFinal = horaFinal;
   }
 
   public int getMinFinal() {
@@ -83,6 +87,22 @@ public class HorarioDia {
   public void setTiempoFinal(TTiempo tiempoFinal) {
     this.tiempoFinal = tiempoFinal;
   }
-  
-  
+
+  @Override
+  public String toString() {
+    String out = "";
+
+    out += String.format("Dia: %s\n",
+        this.diaSemana.name().substring(0, 1).toUpperCase() + this.diaSemana.name().substring(1).toLowerCase());
+
+    out += String.format("Hora inicio: %02d:%02d %s\n", this.horaInicio, this.minInicio,
+        this.tiempoInicio.name().toLowerCase());
+
+    out += String.format("Hora fin: %02d:%02d %s\n", this.horaFinal, this.minFinal,
+        this.tiempoFinal.name().toLowerCase());
+
+    out += "-".repeat(30);
+
+    return out;
+  }
 }

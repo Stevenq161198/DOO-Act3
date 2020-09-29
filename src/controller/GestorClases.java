@@ -12,20 +12,23 @@ import src.model.Instructor;
 
 /**
  *
- * @author 1001001238
+ * @author Kendall Tames
+ * @author Steven Quesada
+ * @author Carlos Vega
+ * @author Marlen Solano
  */
 public class GestorClases {
   private int mesActual;
-  private ArrayList<Clase> clasesProgramadas; 
-  
+  private ArrayList<Clase> clasesProgramadas;
+
   public Boolean agendarClase(Instructor instructor, Clase clase) {
     return true;
   }
-  
+
   public Boolean reservarClase(Cliente cliente, Clase clase) {
     return true;
   }
-  
+
   public int getMesActual() {
     return mesActual;
   }
@@ -41,6 +44,5 @@ public class GestorClases {
   public void setClasesProgramadas(ArrayList<Clase> asistencia) {
     this.clasesProgramadas = asistencia;
   }
-  
-  
+
 }

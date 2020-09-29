@@ -6,11 +6,13 @@
 package src.model;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *
- * @author 1001001238
+ * @author Kendall Tames
+ * @author Steven Quesada
+ * @author Carlos Vega
+ * @author Marlen Solano
  */
 public class Clase {
   private HorarioDia horario; 

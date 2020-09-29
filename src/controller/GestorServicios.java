@@ -10,7 +10,10 @@ import src.model.ServicioEntrenamiento;
 
 /**
  *
- * @author 1001001238
+ * @author Kendall Tames
+ * @author Steven Quesada
+ * @author Carlos Vega
+ * @author Marlen Solano
  */
 public class GestorServicios {
   private ArrayList<ServicioEntrenamiento> servicios;

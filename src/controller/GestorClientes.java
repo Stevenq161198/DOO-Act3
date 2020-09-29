@@ -6,13 +6,14 @@
 package src.controller;
 
 import java.util.ArrayList;
-import src.model.Clase;
 import src.model.Cliente;
-import src.model.Instructor;
 
 /**
  *
- * @author 1001001238
+ * @author Kendall Tames
+ * @author Steven Quesada
+ * @author Carlos Vega
+ * @author Marlen Solano
  */
 public class GestorClientes {
   private ArrayList<Cliente> clientes; 

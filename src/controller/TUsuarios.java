@@ -7,7 +7,10 @@ package src.controller;
 
 /**
  *
- * @author 1001001238
+ * @author Kendall Tames
+ * @author Steven Quesada
+ * @author Carlos Vega
+ * @author Marlen Solano
  */
 public enum TUsuarios {
   ADMINISTRADOR, INSTRUCTOR, CLIENTE;
