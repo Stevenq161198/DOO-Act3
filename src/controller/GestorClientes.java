@@ -16,7 +16,7 @@ import src.model.Cliente;
  * @author Marlen Solano
  */
 public class GestorClientes {
-  private ArrayList<Cliente> clientes; 
+  private ArrayList<Cliente> clientes = new ArrayList<>();
 
   public ArrayList<Cliente> getClientes() {
     return clientes;
@@ -25,8 +25,33 @@ public class GestorClientes {
   public void setClientes(ArrayList<Cliente> clientes) {
     this.clientes = clientes;
   }
-  
+
   public Boolean aplicarPago(String idCliente) {
     return true;
-  } 
+  }
+
+  public void addCliente(Cliente cliente) {
+    this.clientes.add(cliente);
+  }
+
+  public boolean verificarId(String pId){
+    boolean exists=false;
+    for(Cliente cliente : clientes){
+      if(cliente.getId()==pId){
+        exists=true;
+        break;
+      }
+    }
+    return exists;
+  }
+
+  @Override
+  public String toString() {
+    String out = "";
+    
+    for (Cliente cliente : clientes)
+      out += String.format("ID: %s, Nombre: %s\n", cliente.getId(), cliente.getNombre());
+
+    return out;
+  }
 }

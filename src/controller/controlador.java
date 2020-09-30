@@ -1,7 +1,10 @@
 package src.controller;
 
 import java.util.ArrayList;
-
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import src.model.*;
 
 /**
@@ -20,26 +23,21 @@ public class Controlador {
     this.usuarioActual = usuarioActual;
   }
 
-  // public Sala getLaSala() {
-  // return laSala;
-  // }
-
-  // public void setLaSala(Sala laSala) {
-  // this.laSala = laSala;
-  // }
-
   public String getSalaString() {
     return this.laSala.toString();
   }
 
-  public String getHorariosSalaString() {
+  public String getHorariosSalaString() { ////////// !
     return this.laSala.getHorariosString();
+  }
+
+  public int getSizeHorarios(){
+    return this.laSala.getSizeHorariosSalas();
   }
 
   public TUsuarios getUsuarioActual() {
     return usuarioActual;
   }
-
   public void setUsuarioActual(TUsuarios usuarioActual) {
     this.usuarioActual = usuarioActual;
   }
@@ -80,8 +78,12 @@ public class Controlador {
     return aforo;
   }
 
-  public void registrarServicio() {
+  public int getAforo(){
+    return this.laSala.getAforoHabilitado();
+  }
 
+  public void registrarServicio(int id, String descripcion) {
+    this.laSala.registrarServicio(id, descripcion);
   }
 
   public void editarServicio() {
@@ -92,8 +94,15 @@ public class Controlador {
 
   }
 
-  public void registrarInstructor() {
+  public void registrarInstructor(String nombre, String id, String email, String celular, boolean temporal) {
+    // TODO: Poner temporal o no
+    Instructor instructor = new Instructor(nombre, id, email, celular, temporal);
+    this.laSala.agregarInstructor(instructor); 
+  }
 
+  public void registrarEspecialidadAInstructor(String idInstructor, String id, String descripcion, String nombre) { 
+    Especialidad especialidad = new Especialidad(id, descripcion, nombre);
+    this.laSala.agregarEspecialidadAInstructor(idInstructor, especialidad); 
   }
 
   public void editarInstructor() {
@@ -104,23 +113,28 @@ public class Controlador {
 
   }
 
-  public void matricularCliente() {
+  public void matricularCliente(String nombre, String id, String email, String celular) {
+    Calendar cal = Calendar.getInstance();
+    Date date = cal.getTime();
 
+    Cliente cliente = new Cliente(nombre, id, email, celular, date);
+    this.laSala.matricularCliente(cliente);
   }
 
   public void crearCalendarioParaUnMes() {
 
   }
 
-  public void programarUnaClase() {
-
+  public void programarUnaClase(int idHorario, String idInstructor, int idServicio, int aforo) {
+    this.laSala.agregarClase(idHorario, idInstructor, idServicio, aforo);
   }
 
   public void aplicarMensualidad() {
 
   }
 
-  public void reservarEspacioEnClase() {
+  public void reservarEspacioEnClase(String pId,int pNumeroClase) {
+    this.laSala.reservarEspacioEnClase(pId, pNumeroClase);
 
   }
 
@@ -132,8 +146,8 @@ public class Controlador {
 
   }
 
-  public void verCalendarioDelMes() {
-
+  public String verCalendarioDelMes() {
+    this.laSala.
   }
 
   public void verInstructores(Boolean temporal) {
@@ -144,23 +158,1416 @@ public class Controlador {
 
   }
 
+  public String verListaClientes() {
+    return this.laSala.getClientesString();
+  }
+
   public void verListaClientes(TEstado estado) {
 
   }
 
-  public void verListaServicios() {
-
+  public String verListaServicios() {
+    return this.laSala.getServiciosString();
+  }
+  
+  public int getSizeListaServicios(){
+    return this.laSala.getServiciosStringSize();
   }
 
   public void verReservasDeUnaClase() {
 
   }
 
-  public void verInstructores() {
+  public String verInstructors() {
+    return this.laSala.getInstructoresString();
+  }
 
+  public int getSizeInstructors(){
+    return this.laSala.getInstructoresStringSize();
   }
 
   public void verFechaMensualidad() {
 
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
+  }
+}
+  public void verFechaMensualidad() {
+
+  }
+
+  public boolean verificarIdUnicoServicio(int id) {
+    return !this.laSala.existeIdServicio(id);
+  }
+
+  public String verClaseParticular(int numeroClase){
+    return this.laSala.getClaseParticular(numeroClase);
   }
 }

@@ -17,17 +17,16 @@ import java.util.ArrayList;
 public class Clase {
   private HorarioDia horario; 
   private Instructor instructor;
-  private ServicioEntrenamiento servicio; 
+  private Servicio servicio; 
   private int aforoClase;  
   private ArrayList<Cliente> asistencia; 
  
-  public Clase(HorarioDia horario, Instructor instructor, ServicioEntrenamiento servicio, int aforoClase, ArrayList<Cliente> asistencia) {
-    this.asistencia = new ArrayList<Cliente>();
+  public Clase(HorarioDia horario, Instructor instructor, Servicio servicio, int aforoClase) {
+    this.asistencia = new ArrayList<>();
     this.horario = horario;
     this.instructor = instructor;
     this.servicio = servicio;
     this.aforoClase = aforoClase;
-    this.asistencia = asistencia;
   }
 
   public HorarioDia getHorario() {
@@ -46,11 +45,11 @@ public class Clase {
     this.instructor = instructor;
   }
 
-  public ServicioEntrenamiento getServicio() {
+  public Servicio getServicio() {
     return servicio;
   }
 
-  public void setServicio(ServicioEntrenamiento servicio) {
+  public void setServicio(Servicio servicio) {
     this.servicio = servicio;
   }
 
@@ -70,5 +69,12 @@ public class Clase {
     this.asistencia = asistencia;
   }
   
-  
+  @Override
+  public String toString() {
+    String out = "Horario:\n";
+    out += horario.toString() + "\n";
+    out += String.format("Instructor: %s, ID %s\n", instructor.getNombre(), instructor.getId());
+    out += String.format("Servicio: %s, ID %d", servicio.getDescripcion(), servicio.getCodigo());
+    return out;
+  }
 }

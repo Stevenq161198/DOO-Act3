@@ -17,13 +17,12 @@ import java.util.Date;
 public class Cliente extends Persona{
   private Date fechaMatricula;
   private Date fechaUltimoPago;
-  private TTiempo estado;  
+  private TEstado estado;  
 
-  public Cliente(String nombre, String id, String email, String celular, Date fechaMatricula, Date fechaUltimoPago, TTiempo estado) {
+  public Cliente(String nombre, String id, String email, String celular, Date fechaMatricula) {
     super(nombre, id, email, celular);
     this.fechaMatricula = fechaMatricula;
-    this.fechaUltimoPago = fechaUltimoPago;
-    this.estado = estado;
+    this.estado = TEstado.ACTIVO;
   }
 
   public Date getFechaMatricula() {
@@ -42,11 +41,11 @@ public class Cliente extends Persona{
     this.fechaUltimoPago = fechaUltimoPago;
   }
 
-  public TTiempo getEstado() {
+  public TEstado getEstado() {
     return estado;
   }
 
-  public void setEstado(TTiempo estado) {
+  public void setEstado(TEstado estado) {
     this.estado = estado;
   }
   

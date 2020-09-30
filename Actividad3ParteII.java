@@ -6,6 +6,7 @@ import src.controller.TUsuarios;
 import src.model.HorarioDia;
 import src.model.TDia;
 import src.model.TTiempo;
+import src.view.SubMenusAuxiliar;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,12 +23,47 @@ import src.model.TTiempo;
  */
 public class Actividad3ParteII {
 
-  public static void mostrarSubmenuSala(Controlador controlador, Scanner in) {
-
-    System.out.println("\n" + controlador.getSalaString());
+  static void mostrarSubmenuHorario(Scanner in, Controlador controlador) throws Exception {
 
     int opt;
     do {
+      System.out.println("\n" + controlador.getSalaString());
+      System.out.println("*".repeat(10) + " SUBMENÚ HORARIO " + "*".repeat(10));
+      System.out.println("1. Mostrar el horario actual");
+      System.out.println("2. Agregar horario");
+      System.out.println("3. Eliminar horario");
+      System.out.println("4. Salir");
+      System.out.print("> ");
+
+      opt = in.nextInt();
+      in.nextLine(); // Consume el salto de línea
+
+      switch (opt) {
+        case 1:
+          SubMenusAuxiliar.mostrarHorarioActual(in, controlador);;
+          break;
+        case 2:
+          SubMenusAuxiliar.agregarHorario(in, controlador);
+          break;
+        case 3:
+          SubMenusAuxiliar.eliminarHorario(in, controlador);
+          break;
+        case 4:
+          break;
+        default:
+          System.out.println("La opción digitada no es válida");
+          in.nextLine(); // Esperar por un Enter
+          break;
+      }
+    } while (opt != 4);
+
+  }
+
+  static void mostrarSubmenuSala(Controlador controlador, Scanner in) throws Exception {
+
+    int opt;
+    do {
+      System.out.println("\n" + controlador.getSalaString());
       System.out.println("*".repeat(10) + " SUBMENÚ SALA " + "*".repeat(10));
       System.out.println("1. Cambiar el nombre");
       System.out.println("2. Ver horario de atención");
@@ -37,74 +73,33 @@ public class Actividad3ParteII {
       System.out.println("6. Cambiar capacidad máxima");
       System.out.println("7. Cambiar aforo");
       System.out.println("8. Salir");
-      System.out.println("> ");
+      System.out.print("> ");
 
       opt = in.nextInt();
       in.nextLine(); // Consume el salto de línea
 
       switch (opt) {
         case 1:
-          System.out.print("Digite el nuevo nombre: ");
-          String nuevoNombre = in.nextLine();
-          System.out.println(String.format("El nuevo nombre es: %s", nuevoNombre));
-          in.nextLine();
+          SubMenusAuxiliar.cambiarNombreSala(in, controlador);
           break;
         case 2:
           System.out.println("El horario de atención es: \n");
           System.out.println(controlador.getHorariosSalaString());
           break;
         case 3:
-          System.out.println("Ingrese el nuevo horario de atención\n");
-          System.out.println("Dia: ");
-          String nuevoDia = in.nextLine();
-          String nuevoDiaU = nuevoDia.toUpperCase();
-          TDia tDia = TDia.valueOf(nuevoDiaU);
-          System.out.println("Hora y minutos de inicio: ");
-          int nuevaHoraIn = in.nextInt();
-          int nuevoMinIn = in.nextInt();
-          System.out.println("Am/Pm: ");
-          String ampmIn = in.nextLine();
-          String ampmInU = ampmIn.toUpperCase().trim();
-          TTiempo tTiempoIn = TTiempo.valueOf(ampmInU);
-          System.out.println("Hora y minutos de fin: ");
-          int nuevaHoraFin = in.nextInt();
-          int nuevoMinFin = in.nextInt();
-          System.out.println("Am/Pm: ");
-          String ampmFin = in.nextLine();
-          String ampmFinU = ampmFin.toUpperCase();
-          TTiempo tTiempoFin = TTiempo.valueOf(ampmFinU);
-          controlador.agregarHorarioSala(new HorarioDia(tDia, nuevaHoraIn, nuevoMinIn, tTiempoIn, nuevaHoraFin, nuevoMinFin, tTiempoFin));
-          System.out.println("El nuevo horario es: ");
-          System.out.println(controlador.getHorariosSalaString());
+          mostrarSubmenuHorario(in, controlador);
           break;
         case 4:
-          System.out.println("Digite el nuevo costo de matrícula\n");
-          System.out.println("Costo de matrícula: ");
-          double nuevoCostoMatricula = in.nextDouble();
-          System.out.println("El nuevo costo de matrícula es: ");
-          System.out.println(controlador.definirCostoMatricula(nuevoCostoMatricula));
+          SubMenusAuxiliar.cambiarCostoMatricula(in, controlador);
           break;
         case 5:
-          System.out.println("Digite el nuevo costo de la mensualidad\n");
-          System.out.println("Costo de mensualidad: ");
-          Double nuevoCostoMensualidad =in.nextDouble();
-          System.out.println("El nuevo costo de la mensualidad es: ");
-          System.out.println(controlador.definirCostoMensualidad(nuevoCostoMensualidad));          
-          
+          SubMenusAuxiliar.cambiarCostoMensualidad(in, controlador);
           break;
         case 6:
-          System.out.println("Digite la nueva capacidad maxima\n");
-          System.out.println("Capacidad maxima: ");
-          int nuevoCapacidadMaxima = in.nextInt();
-          System.out.println("La nueva capacidad maxima es: ");
-          System.out.println(controlador.definirCapacidad(nuevoCapacidadMaxima));
+          SubMenusAuxiliar.cambiarCapacidadMaxima(in, controlador);
           break;
         case 7:
-          System.out.println("Digite la nuevo aforo\n");
-          System.out.println("Aforo: ");
-          int nuevoAforo = in.nextInt();
-          System.out.println("El nuevo aforo es: ");
-          System.out.println(controlador.definirAforo(nuevoAforo));
+          SubMenusAuxiliar.cambiarAforo(in, controlador);
           break;
         case 8:
           System.out.println("¡Gracias, saliendo!");
@@ -121,7 +116,7 @@ public class Actividad3ParteII {
   /**
    * @param args the command line arguments
    */
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
 
     Scanner in = new Scanner(System.in);
     Controlador controlador = new Controlador(new Sala(), TUsuarios.ADMINISTRADOR);
@@ -132,15 +127,18 @@ public class Actividad3ParteII {
 
     do {
       System.out.println("*".repeat(10) + " MENÚ PRINCIPAL " + "*".repeat(10));
-      System.out.println("1. Configurar sala");
-      System.out.println("2. Registro y visualización servicios ofrecidos");
-      System.out.println("3. Registro y visualización de instructores");
-      System.out.println("4. Matrícula de un nuevo cliente");
-      System.out.println("5. Programar una clase");
-      System.out.println("6. Reservar de un espacio");
-      System.out.println("7. Ver una clase particular");
-      System.out.println("8. Salir");
-      System.out.println("> ");
+      System.out.println("1. Configurar sala"); // DONE
+      System.out.println("2. Registro de servicios ofrecidos"); // Kendall
+      System.out.println("3. Visualización servicios ofrecidos"); // DONE
+      System.out.println("4. Registro de instructores"); // Marlen
+      System.out.println("5. Visualización de instructores"); // DONE
+      System.out.println("6. Matrícula de un nuevo cliente"); // DONE
+      System.out.println("7. Visualización de clientes"); // DONE
+      System.out.println("8. Programar una clase"); // Steven
+      System.out.println("9. Reservar de un espacio");// Carlos
+      System.out.println("10. Ver una clase particular");// DONE
+      System.out.println("11. Salir");
+      System.out.print("> ");
       opt = in.nextInt();
       in.nextLine(); // Consumir salto de línea pendiente
 
@@ -149,19 +147,32 @@ public class Actividad3ParteII {
           mostrarSubmenuSala(controlador, in);
           break;
         case 2:
-
+          SubMenusAuxiliar.registrarServicio(in, controlador);
           break;
         case 3:
+          controlador.verListaServicios();
           break;
         case 4:
           break;
         case 5:
+          SubMenusAuxiliar.visualizarInstructores(controlador);
           break;
         case 6:
+          SubMenusAuxiliar.matricularCliente(in, controlador);
           break;
         case 7:
+          SubMenusAuxiliar.visualizarClientes(controlador);
           break;
         case 8:
+          // controlador.
+          break;
+        case 9:
+          SubMenusAuxiliar.reservarUnEspacio(in, controlador);
+          break;
+        case 10:
+          SubMenusAuxiliar.verClaseParticular(in, controlador);
+          break;
+        case 11:
           break;
         default:
           System.out.println("La opción digitada no es válida");
@@ -169,10 +180,10 @@ public class Actividad3ParteII {
           break;
       }
 
-    } while (opt != 8);
+    } while (opt != 11);
 
     in.close();
-    System.out.println("\nasta la procsima!");
+    System.out.println("\n¡Gracias por utilizar el programa!");
   } // https://www.youtube.com/watch?v=MXmQM_Uehtk
 
 }

@@ -16,13 +16,15 @@ import java.util.ArrayList;
  */
 public class Instructor extends Persona {
   private Boolean temporal;
-  private ArrayList<ServicioEntrenamiento> servicios; 
-
-  public Instructor(String nombre, String id, String email, String celular, Boolean temporal, ArrayList<ServicioEntrenamiento> servicios) {
+  private ArrayList<Servicio> servicios; 
+  private ArrayList<Especialidad> especialidades; 
+  
+  public Instructor(String nombre, String id, String email, String celular, Boolean temporal) {
     super(nombre, id, email, celular);
-    this.servicios = new ArrayList<ServicioEntrenamiento>();
+    this.servicios = new ArrayList<Servicio>();
     this.temporal = temporal;
-    this.servicios = servicios;
+    this.servicios = new ArrayList<>();
+    this.especialidades = new ArrayList<>();
   }
 
   public Boolean getTemporal() {
@@ -33,11 +35,19 @@ public class Instructor extends Persona {
     this.temporal = temporal;
   }
 
-  public ArrayList<ServicioEntrenamiento> getServicios() {
+  public ArrayList<Servicio> getServicios() {
     return servicios;
   }
+  
+  public ArrayList<Especialidad> getEspecialidades() {
+    return especialidades;
+  }
 
-  public void setServicios(ArrayList<ServicioEntrenamiento> servicios) {
+  public void aniadirEspecialidad(Especialidad especialidad) {
+    this.especialidades.add(especialidad);
+  }
+
+  public void setServicios(ArrayList<Servicio> servicios) {
     this.servicios = servicios;
   }
 

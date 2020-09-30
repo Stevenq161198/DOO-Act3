@@ -22,6 +22,7 @@ public class GestorClases {
   private ArrayList<Clase> clasesProgramadas;
 
   public Boolean agendarClase(Instructor instructor, Clase clase) {
+
     return true;
   }
 
@@ -45,4 +46,18 @@ public class GestorClases {
     this.clasesProgramadas = asistencia;
   }
 
+  @Override
+  public String toString() {
+    return "sa";
+  }
+
+  public String getClaseParticular(int numeroClase) {
+    String out = "";
+    if (numeroClase < this.clasesProgramadas.size()) {
+      out = this.clasesProgramadas.get(numeroClase).toString();
+    } else {
+      out = "El numero de clase no existe";
+    }
+    return out;
+  }
 }

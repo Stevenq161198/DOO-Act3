@@ -7,7 +7,7 @@ package src.controller;
 
 import java.util.ArrayList;
 import src.model.Instructor;
-import src.model.ServicioEntrenamiento;
+import src.model.Servicio;
 
 /**
  *
@@ -23,15 +23,48 @@ public class GestorInstructores {
     return instructores;
   }
 
+  public int getSizeInstructores(){
+    return instructores.size();
+  }
+
   public void setInstructores(ArrayList<Instructor> instructores) {
     this.instructores = instructores;
+  } 
+  
+  public void addInstructor(Instructor instructor) {
+    this.instructores.add(instructor);
   }
-  
-  public Boolean agregarServicioAInstructor(String idInstructor, ServicioEntrenamiento servicio ) {
+
+  public void agregarEspecialidad(String idInstructor, Especialidad especialidad ) {
+    for (Instructor instructor : instructores) {
+      if (instructor.getId()==idInstructor){
+        instructor.aniadirEspecialidad(especialidad);
+      }
+    }
+  } 
+
+  public Boolean agregarServicioAInstructor(String idInstructor, Servicio servicio ) {
     return true;
   } 
   
-  public Boolean eliminarServicioAInstructor(String idInstructor, ServicioEntrenamiento servicio ) {
+  public Boolean eliminarServicioAInstructor(String idInstructor, Servicio servicio ) {
     return true;
   } 
+
+  @Override
+  public String toString() {
+    String out = "";
+    
+    for (Instructor instructor : instructores)
+      out += String.format("ID: %s, Nombre: %s\n", instructor.getId(), instructor.getNombre());
+
+    return out;
+  }
+
+  public Instructor getInstructor(String idInstructor) {
+    for (Instructor instructor : instructores)
+      if (instructor.getId().equals(idInstructor))
+        return instructor;
+    return null;
+  }
 }

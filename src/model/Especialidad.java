@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src.model;
+package src.model; 
 
 /**
  *
@@ -12,21 +12,24 @@ package src.model;
  * @author Carlos Vega
  * @author Marlen Solano
  */
-public class ServicioEntrenamiento {
-  private int codigo;
+
+public class Especialidad {
+  private String id;
   private String descripcion;
+  private String nombre;
 
-  public ServicioEntrenamiento(int codigo, String descripcion) {
-    this.codigo = codigo;
+  public Especialidad(String id, String descripcion, String nombre) {
+    this.id = id;
     this.descripcion = descripcion;
+    this.nombre = nombre;
   }
 
-  public int getCodigo() {
-    return codigo;
+  public String getId() {
+    return this.id;
   }
 
-  public void setCodigo(int codigo) {
-    this.codigo = codigo;
+  public void setId(String id) {
+    this.id = id;
   }
 
   public String getDescripcion() {
@@ -36,6 +39,13 @@ public class ServicioEntrenamiento {
   public void setDescripcion(String descripcion) {
     this.descripcion = descripcion;
   }
-  
-  
+
+  public String getNombre() {
+    return nombre;
+  }
+
+  public void setNombre(String nombre) {
+    this.nombre = nombre;
+  }
+      
 }
