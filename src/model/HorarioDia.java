@@ -105,4 +105,10 @@ public class HorarioDia {
 
     return out;
   }
+
+  public String getHoraInicioString() {
+    return String.format("%s, %02d:%02d %s",
+        this.diaSemana.name().substring(0, 1).toUpperCase() + this.diaSemana.name().substring(1).toLowerCase(),
+        this.horaInicio, this.minInicio, this.tiempoInicio.name().toLowerCase());
+  }
 }

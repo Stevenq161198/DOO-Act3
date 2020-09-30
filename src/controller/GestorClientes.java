@@ -34,21 +34,18 @@ public class GestorClientes {
     this.clientes.add(cliente);
   }
 
-  public boolean verificarId(String pId){
-    boolean exists=false;
-    for(Cliente cliente : clientes){
-      if(cliente.getId()==pId){
-        exists=true;
-        break;
-      }
-    }
-    return exists;
+  public Cliente verificarId(String pId) {
+    for (Cliente cliente : clientes)
+      if (cliente.getId().equals(pId))
+        return cliente;
+
+    return null;
   }
 
   @Override
   public String toString() {
     String out = "";
-    
+
     for (Cliente cliente : clientes)
       out += String.format("ID: %s, Nombre: %s\n", cliente.getId(), cliente.getNombre());
 

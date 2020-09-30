@@ -210,47 +210,53 @@ public class SubMenusAuxiliar {
     System.out.println(controlador.verInstructores());
   }
 
+  public static void visualizarClases(Controlador controlador) {
+    System.out.println("Lista de clases: ");
+    System.out.println(controlador.verListaClases());
+  }
+
   public static void programarClase(Scanner in, Controlador controlador) {
     System.out.println("Ingrese los datos para programar la clase");
-    System.out.println("Ingrese el ID del horario que desee: \n");
+    
 
-    controlador.getHorariosSalaString();
+    System.out.println(controlador.getHorariosSalaString());
+    System.out.println("Ingrese el ID del horario que desee: ");
 
     int idHorario = in.nextInt();
     in.nextLine();
 
     while (idHorario < 0 || idHorario > controlador.getSizeHorarios()) {
       System.out.println("El ID no es válido.\nIngrese el ID del horario que desee: \n");
-      controlador.getHorariosSalaString();
       idHorario = in.nextInt();
       in.nextLine();
     }
 
     System.out.println(controlador.verInstructores());
 
-    System.out.println("Ingrese el id del instructor: \n");
+    System.out.println("Ingrese el id del instructor:");
 
     String idInstructor = in.nextLine();
 
     while (!controlador.validarIdInstructor(idInstructor)) {
-      System.out.println("El ID no es válido.\nIngrese el id del instructor: \n");
+      System.out.println(controlador.verInstructores());
+      System.out.println("El ID no es válido.\nIngrese el id del instructor:");
       idInstructor = in.nextLine();
     }
 
-    controlador.verListaServicios();
+    System.out.println(controlador.verListaServicios());
 
-    System.out.println("Ingrese el id del servicio: \n");
+    System.out.println("Ingrese el id del servicio:");
     int idServicio = in.nextInt();
     in.nextLine();
 
     while (!controlador.validarIdServicio(idServicio)) {
-      System.out.println("El ID no es válido.\nIngrese el id del servicio: \n");
-      controlador.verListaServicios();
+      System.out.println(controlador.verListaServicios());
+      System.out.println("El ID no es válido.\nIngrese el id del servicio:");
       idServicio = in.nextInt();
       in.nextLine();
     }
 
-    System.out.println("Ingrese el aforo: \n");
+    System.out.println("Ingrese el aforo:");
 
     int aforo = in.nextInt();
     in.nextLine();
@@ -260,7 +266,7 @@ public class SubMenusAuxiliar {
   }
 
   public static void verClaseParticular(Scanner in, Controlador controlador) {
-    System.out.println(controlador.verCalendarioDelMes());
+    System.out.println(controlador.verListaClases());
     System.out.println("Ingrese el numero de clase: ");
 
     int numeroClase = in.nextInt();
@@ -270,9 +276,10 @@ public class SubMenusAuxiliar {
   }
 
   public static void reservarUnEspacio(Scanner in, Controlador controlador) {
-    System.out.println("Ingrese el numero de identificacion: ");
+    System.out.println("Ingrese el numero de identificacion del cliente: ");
     String id = in.nextLine();
-
+    
+    System.out.println(controlador.verListaClases());
     System.out.println("Ingrese el numero de clase: ");
     int numeroClase = in.nextInt();
     in.nextLine();

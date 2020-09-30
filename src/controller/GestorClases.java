@@ -8,7 +8,6 @@ package src.controller;
 import java.util.ArrayList;
 import src.model.Clase;
 import src.model.Cliente;
-import src.model.Instructor;
 
 /**
  *
@@ -19,15 +18,21 @@ import src.model.Instructor;
  */
 public class GestorClases {
   private int mesActual;
-  private ArrayList<Clase> clasesProgramadas;
+  private ArrayList<Clase> clasesProgramadas = new ArrayList<>();
 
-  public Boolean agendarClase(Instructor instructor, Clase clase) {
-
+  public Boolean agendarClase(Clase clase) {
+    clasesProgramadas.add(clase);
     return true;
   }
 
-  public Boolean reservarClase(Cliente cliente, Clase clase) {
-    return true;
+  public Boolean reservarClase(Cliente pCliente, Clase pClase) {
+    for(Clase clase: clasesProgramadas){
+      if(clase.equals(pClase)){
+        clase.addCliente(pCliente);
+        return true;
+      }
+    }
+    return false;
   }
 
   public int getMesActual() {
@@ -48,10 +53,16 @@ public class GestorClases {
 
   @Override
   public String toString() {
-    return "sa";
+    String out = "";
+    for (int indice = 0; indice < clasesProgramadas.size(); indice++) {
+      Clase clase = clasesProgramadas.get(indice);
+      out += String.format("%d. %s\t%s\n", indice, clase.getHorario().getHoraInicioString(),
+          clase.getServicio().getDescripcion());
+    }
+    return out;
   }
 
-  public String getClaseParticular(int numeroClase) {
+  public String getClaseParticularString(int numeroClase) {
     String out = "";
     if (numeroClase < this.clasesProgramadas.size()) {
       out = this.clasesProgramadas.get(numeroClase).toString();
@@ -59,5 +70,9 @@ public class GestorClases {
       out = "El numero de clase no existe";
     }
     return out;
+  }
+
+  public Clase getClaseParticular(int numeroClase) {
+      return this.clasesProgramadas.get(numeroClase);
   }
 }

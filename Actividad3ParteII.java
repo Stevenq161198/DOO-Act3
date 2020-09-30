@@ -40,7 +40,6 @@ public class Actividad3ParteII {
       switch (opt) {
         case 1:
           SubMenusAuxiliar.mostrarHorarioActual(in, controlador);
-          ;
           break;
         case 2:
           SubMenusAuxiliar.agregarHorario(in, controlador);
@@ -134,9 +133,9 @@ public class Actividad3ParteII {
       System.out.println("5. Visualización de instructores"); // DONE
       System.out.println("6. Matrícula de un nuevo cliente"); // DONE
       System.out.println("7. Visualización de clientes"); // DONE
-      System.out.println("8. Visualización de clases"); //
-      System.out.println("9. Programar una clase"); // Steven
-      System.out.println("10. Reservar de un espacio");// Carlos
+      System.out.println("8. Visualización de clases"); // DONE
+      System.out.println("9. Programar una clase"); // DONE
+      System.out.println("10. Reservar de un espacio");// in progress...
       System.out.println("11. Ver una clase particular");// DONE
       System.out.println("12. Salir");
       System.out.print("> ");
@@ -166,15 +165,18 @@ public class Actividad3ParteII {
           SubMenusAuxiliar.visualizarClientes(controlador);
           break;
         case 8:
-          // controlador.
+          SubMenusAuxiliar.visualizarClases(controlador);
           break;
         case 9:
-          SubMenusAuxiliar.reservarUnEspacio(in, controlador);
+          SubMenusAuxiliar.programarClase(in, controlador);
           break;
         case 10:
-          SubMenusAuxiliar.verClaseParticular(in, controlador);
+          SubMenusAuxiliar.reservarUnEspacio(in, controlador);
           break;
         case 11:
+          SubMenusAuxiliar.verClaseParticular(in, controlador);
+          break;
+        case 12:
           break;
         default:
           System.out.println("La opción digitada no es válida");
@@ -182,7 +184,7 @@ public class Actividad3ParteII {
           break;
       }
 
-    } while (opt != 11);
+    } while (opt != 12);
 
     in.close();
     System.out.println("\n¡Gracias por utilizar el programa!");

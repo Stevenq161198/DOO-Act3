@@ -25,7 +25,7 @@ public class Controlador {
     return this.laSala.toString();
   }
 
-  public String getHorariosSalaString() { ////////// !
+  public String getHorariosSalaString() {
     return this.laSala.getHorariosString();
   }
 
@@ -133,7 +133,6 @@ public class Controlador {
 
   public void reservarEspacioEnClase(String pId, int pNumeroClase) {
     this.laSala.reservarEspacioEnClase(pId, pNumeroClase);
-
   }
 
   public void cancelarUnaReserva() {
@@ -160,6 +159,10 @@ public class Controlador {
 
   public String verListaClientes() {
     return this.laSala.getClientesString();
+  }
+
+  public String verListaClases() {
+    return this.laSala.getClasesString();
   }
 
   public void verListaClientes(TEstado estado) {
