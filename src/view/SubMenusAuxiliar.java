@@ -27,6 +27,7 @@ public class SubMenusAuxiliar {
     System.out.println("Digite el nuevo costo de matrícula\n");
     System.out.println("Costo de matrícula: ");
     double nuevoCostoMatricula = in.nextDouble();
+    in.nextLine();
     System.out.println("El nuevo costo de matrícula es: ");
     System.out.println(String.valueOf(controlador.definirCostoMatricula(nuevoCostoMatricula)));
   }
@@ -35,6 +36,7 @@ public class SubMenusAuxiliar {
     System.out.println("Digite el nuevo costo de la mensualidad\n");
     System.out.println("Costo de mensualidad: ");
     Double nuevoCostoMensualidad = in.nextDouble();
+    in.nextLine();
     System.out.println("El nuevo costo de la mensualidad es: ");
     System.out.println(String.valueOf(controlador.definirCostoMensualidad(nuevoCostoMensualidad)));
   }
@@ -43,6 +45,7 @@ public class SubMenusAuxiliar {
     System.out.println("Digite la nueva capacidad maxima\n");
     System.out.println("Capacidad maxima: ");
     int nuevoCapacidadMaxima = in.nextInt();
+    in.nextLine();
     System.out.println("La nueva capacidad maxima es: ");
     System.out.println(controlador.definirCapacidad(nuevoCapacidadMaxima));
   }
@@ -51,6 +54,7 @@ public class SubMenusAuxiliar {
     System.out.println("Digite la nuevo aforo\n");
     System.out.println("Aforo: ");
     int nuevoAforo = in.nextInt();
+    in.nextLine();
     System.out.println("El nuevo aforo es: ");
     System.out.println(controlador.definirAforo(nuevoAforo));
   }
@@ -115,6 +119,7 @@ public class SubMenusAuxiliar {
     System.out.println("Digite el numero del horario que desea eliminar\n");
     System.out.println("Numero del horario: ");
     int numeroHorario = in.nextInt();
+    in.nextLine();
     controlador.eliminarHorarioSala(numeroHorario);
 
   }
@@ -126,7 +131,7 @@ public class SubMenusAuxiliar {
     System.out.println("Ingrese el id del usuario: ");
     String id = in.nextLine();
 
-    System.out.println("Ingrese el remail del usuario: ");
+    System.out.println("Ingrese el email del usuario: ");
     String email = in.nextLine();
 
     System.out.println("Ingrese el celular del usuario: ");
@@ -146,47 +151,54 @@ public class SubMenusAuxiliar {
       in.nextLine();
     }
 
-    System.out.print("Ingrese la descripción del proyecto: ");
+    System.out.print("Ingrese la descripción del servicio: ");
     String descripcion = in.nextLine();
 
     controlador.registrarServicio(id, descripcion);
   }
 
   public static void registrarInstructor(Scanner in, Controlador controlador) {
-    System.out.println("Ingrese el nombre del cliente: ");
+    System.out.println("Ingrese el nombre del instructor: ");
     String nombre = in.nextLine();
 
-    System.out.println("Ingrese el id del usuario: ");
+    System.out.println("Ingrese el id: ");
     String id = in.nextLine();
 
-    System.out.println("Ingrese el email del usuario: ");
+    System.out.println("Ingrese el email: ");
     String email = in.nextLine();
 
-    System.out.println("Ingrese el celular del usuario: ");
+    System.out.println("Ingrese el celular: ");
     String celular = in.nextLine();
 
-    controlador.registrarInstructor(nombre, id, email, celular, false);
+    System.out.println("¿Es temporal? (s/n): ");
+    boolean temporal = in.nextLine().trim().toLowerCase().equals("s");
+
+    controlador.registrarInstructor(nombre, id, email, celular, temporal);
 
     System.out.println("Indique la opción que desea: ");
     System.out.println("1. Agregar especialidad");
     System.out.println("2. Salir");
-    String opcion = in.nextLine();
-    while (opcion == "1"){  
-        System.out.println("Ingrese el id de la especialidad: ");
-        String idEsp = in.nextLine();
-    
-        System.out.println("Ingrese la descripcion de la especialidad: ");
-        String descripcion = in.nextLine();
-    
-        System.out.println("Ingrese el nombre de la especialidad: ");
-        String nombreEsp = in.nextLine();
-        controlador.registrarEspecialidadAInstructor(id, idEsp, descripcion, nombreEsp);
 
-        System.out.println("Seleccione 1 si desea seguir ingresando especialidades o presione enter para salir");
-        opcion = in.nextLine();
-      }
+    String opcion = in.nextLine();
+
+    while (opcion == "1") {
+      // TODO: Mostrar especialidades existentes
+
+      System.out.println("Ingrese el id de la especialidad: ");
+      String idEsp = in.nextLine();
+
+      System.out.println("Ingrese la descripcion de la especialidad: ");
+      String descripcion = in.nextLine();
+
+      System.out.println("Ingrese el nombre de la especialidad: ");
+      String nombreEsp = in.nextLine();
+
+      controlador.registrarEspecialidadAInstructor(id, idEsp, descripcion, nombreEsp);
+
+      System.out.println("Seleccione 1 si desea seguir ingresando especialidades o presione enter para salir");
+      opcion = in.nextLine();
     }
-  
+  }
 
   public static void visualizarClientes(Controlador controlador) {
     System.out.println("Lista de clientes:");
@@ -195,7 +207,7 @@ public class SubMenusAuxiliar {
 
   public static void visualizarInstructores(Controlador controlador) {
     System.out.println("Lista de instructores: ");
-    // System.out.println(controlador.verInstructores());
+    System.out.println(controlador.verInstructores());
   }
 
   public static void programarClase(Scanner in, Controlador controlador) {
@@ -206,8 +218,7 @@ public class SubMenusAuxiliar {
 
     int idHorario = in.nextInt();
     in.nextLine();
-    // Validar que el id esté entre 0 y n
-    // TODO: Cambiar el límite superior
+
     while (idHorario < 0 || idHorario > controlador.getSizeHorarios()) {
       System.out.println("El ID no es válido.\nIngrese el ID del horario que desee: \n");
       controlador.getHorariosSalaString();
@@ -215,59 +226,58 @@ public class SubMenusAuxiliar {
       in.nextLine();
     }
 
+    System.out.println(controlador.verInstructores());
+
     System.out.println("Ingrese el id del instructor: \n");
-    controlador.verInstructors();
 
     String idInstructor = in.nextLine();
-    
 
-    while(idInstructor < 0 || idInstructor > controlador.getSizeInstructors()){
+    while (!controlador.validarIdInstructor(idInstructor)) {
       System.out.println("El ID no es válido.\nIngrese el id del instructor: \n");
-      controlador.verInstructors();
       idInstructor = in.nextLine();
     }
-    
-    System.out.println("Ingrese el id del servicio: \n");
+
     controlador.verListaServicios();
 
+    System.out.println("Ingrese el id del servicio: \n");
     int idServicio = in.nextInt();
     in.nextLine();
 
-    // TODO: Validar servicio
-    while(idServicio < 0 || idServicio > controlador.getSizeListaServicios()){
+    while (!controlador.validarIdServicio(idServicio)) {
       System.out.println("El ID no es válido.\nIngrese el id del servicio: \n");
       controlador.verListaServicios();
       idServicio = in.nextInt();
       in.nextLine();
     }
-    
+
     System.out.println("Ingrese el aforo: \n");
 
     int aforo = in.nextInt();
     in.nextLine();
 
     controlador.programarUnaClase(idHorario, idInstructor, idServicio, aforo);
-    
+
   }
 
   public static void verClaseParticular(Scanner in, Controlador controlador) {
-    // TODO: Mostrar vista de clases con un ID cada un
     System.out.println(controlador.verCalendarioDelMes());
     System.out.println("Ingrese el numero de clase: ");
+
     int numeroClase = in.nextInt();
+    in.nextLine();
 
     System.out.println(controlador.verClaseParticular(numeroClase));
-
   }
 
-  public static void reservarUnEspacio(Scanner in, Controlador controlador){
+  public static void reservarUnEspacio(Scanner in, Controlador controlador) {
     System.out.println("Ingrese el numero de identificacion: ");
     String id = in.nextLine();
 
     System.out.println("Ingrese el numero de clase: ");
     int numeroClase = in.nextInt();
+    in.nextLine();
 
-    controlador.reservarEspacioEnClase(id,numeroClase);
+    controlador.reservarEspacioEnClase(id, numeroClase);
 
   }
 }

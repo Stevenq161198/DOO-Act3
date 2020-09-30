@@ -90,19 +90,16 @@ public class Sala {
   }
 
   public void agregarInstructor(Instructor instructor) {
-    this.gInstructores.addInstructor(instructor); 
+    this.gInstructores.addInstructor(instructor);
   }
 
   public void agregarEspecialidadAInstructor(String idInstructor, Especialidad especialidad) {
-    this.gInstructores.agregarEspecialidad(idInstructor, especialidad);  
+    this.gInstructores.agregarEspecialidad(idInstructor, especialidad);
   }
 
   public boolean agregarClase(int idHorario, String idInstructor, int idServicio, int aforo) {
     HorarioDia horarioDia = horario.get(idHorario);
     Instructor instructor = gInstructores.getInstructor(idInstructor);
-    
-    if (instructor == null)
-      return false;
 
     Servicio servicio = gServicios.getServicio(idServicio);
 
@@ -149,11 +146,12 @@ public class Sala {
   public String getServiciosString() {
     return this.gServicios.toString();
   }
-  public String getServiciosStringSize() {
+
+  public int getServiciosStringSize() {
     return this.gServicios.getServiciosSize();
   }
 
-  public int getSizeHorariosSalas(){
+  public int getSizeHorariosSalas() {
     return this.gServicios.getServiciosSize();
   }
 
@@ -164,12 +162,12 @@ public class Sala {
   public String getInstructoresString() {
     return this.gInstructores.toString();
   }
-  
-  public int getInstructoresStringSize(){
+
+  public int getInstructoresStringSize() {
     return this.gInstructores.getSizeInstructores();
   }
-  
-  public String getClaseParticular(int numeroClase){
+
+  public String getClaseParticular(int numeroClase) {
     return this.gClases.getClaseParticular(numeroClase);
   }
 
@@ -193,17 +191,23 @@ public class Sala {
     this.gServicios.agregarServicio(id, descripcion);
   }
 
-  public boolean verificarCliente(String pId){
-    boolean exists=false;
-    if(this.gClientes.verificarId(pId)){
-      exists=true;
+  public boolean verificarCliente(String pId) {
+    boolean exists = false;
+    if (this.gClientes.verificarId(pId)) {
+      exists = true;
     }
     return exists;
   }
-  
-  public boolean reservarEspacioEnClase(String pId,int pNumeroClase){
-    if(verificarcliente(pId)){
-      this.gClases.agendarClase(instructor, clase);
-    }
+
+  public boolean reservarEspacioEnClase(String pId, int pNumeroClase) {
+    // TODO: Fix
+    // if (verificarCliente(pId)) {
+    //   this.gClases.agendarClase(instructor, clase);
+    // }
+    return true;
   }
+
+public boolean existeIdInstructor(String idInstructor) {
+	return this.gInstructores.existeId(idInstructor);
+}
 }

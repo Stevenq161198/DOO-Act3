@@ -27,7 +27,6 @@ public class Actividad3ParteII {
 
     int opt;
     do {
-      System.out.println("\n" + controlador.getSalaString());
       System.out.println("*".repeat(10) + " SUBMENÚ HORARIO " + "*".repeat(10));
       System.out.println("1. Mostrar el horario actual");
       System.out.println("2. Agregar horario");
@@ -40,7 +39,8 @@ public class Actividad3ParteII {
 
       switch (opt) {
         case 1:
-          SubMenusAuxiliar.mostrarHorarioActual(in, controlador);;
+          SubMenusAuxiliar.mostrarHorarioActual(in, controlador);
+          ;
           break;
         case 2:
           SubMenusAuxiliar.agregarHorario(in, controlador);
@@ -128,16 +128,17 @@ public class Actividad3ParteII {
     do {
       System.out.println("*".repeat(10) + " MENÚ PRINCIPAL " + "*".repeat(10));
       System.out.println("1. Configurar sala"); // DONE
-      System.out.println("2. Registro de servicios ofrecidos"); // Kendall
+      System.out.println("2. Registro de servicios ofrecidos"); // DONE
       System.out.println("3. Visualización servicios ofrecidos"); // DONE
-      System.out.println("4. Registro de instructores"); // Marlen
+      System.out.println("4. Registro de instructores"); // DONE
       System.out.println("5. Visualización de instructores"); // DONE
       System.out.println("6. Matrícula de un nuevo cliente"); // DONE
       System.out.println("7. Visualización de clientes"); // DONE
-      System.out.println("8. Programar una clase"); // Steven
-      System.out.println("9. Reservar de un espacio");// Carlos
-      System.out.println("10. Ver una clase particular");// DONE
-      System.out.println("11. Salir");
+      System.out.println("8. Visualización de clases"); //
+      System.out.println("9. Programar una clase"); // Steven
+      System.out.println("10. Reservar de un espacio");// Carlos
+      System.out.println("11. Ver una clase particular");// DONE
+      System.out.println("12. Salir");
       System.out.print("> ");
       opt = in.nextInt();
       in.nextLine(); // Consumir salto de línea pendiente
@@ -150,9 +151,10 @@ public class Actividad3ParteII {
           SubMenusAuxiliar.registrarServicio(in, controlador);
           break;
         case 3:
-          controlador.verListaServicios();
+          System.out.println(controlador.verListaServicios());
           break;
         case 4:
+          SubMenusAuxiliar.registrarInstructor(in, controlador);
           break;
         case 5:
           SubMenusAuxiliar.visualizarInstructores(controlador);
